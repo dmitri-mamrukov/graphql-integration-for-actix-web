@@ -1,15 +1,15 @@
-FROM rust:1 as builder
+# Use the latest Rust
+FROM rust
 
+WORKDIR /usr/src/app
+
+# Bundle the app source.
 COPY . .
 
-RUN cargo build --release
-
-FROM rust:1-slim-stretch
-
-COPY --from=builder /target/release/crud_server_sample .
-
-RUN ls -la /crud_server_sample
+# Build the app.
+RUN cargo install --path .
 
 EXPOSE 8000
 
-ENTRYPOINT ["/crud_server_sample"]
+# Start the app.
+CMD ["crud_server_sample"]

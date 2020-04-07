@@ -3,9 +3,11 @@ GraphQL integration for Actix Web
 
 ## Running
 
-1. Start the GraphQL server via `cargo run`
+1. Start the GraphQL server:
 
-2. `http://localhost:1978/graphiql`
+`cargo run`
+
+2. `http://localhost:8000/graphiql`
 
 3. In the GraphiQL interface, enter the following queries:
 
@@ -33,12 +35,12 @@ GraphQL integration for Actix Web
 
 ## Docker
 
-1. `docker build --tag crud-server-image .`
+1. `docker build --tag crud_server_sample_image --force-rm --no-cache --file Dockerfile .`
 
-2. `docker run -it --expose 1978 --publish 1978:1978 --rm --name crud-server-image crud-server-image`
+2. `docker run --detach --publish 8000:8000 crud_server_sample_image`
 
 Useful commands:
 
 `docker stop $(docker ps --all --quiet)`
 
-`docker inspect crud-server-image`
+`docker inspect crud_server_sample_image`

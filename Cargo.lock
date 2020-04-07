@@ -452,6 +452,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "crud_server_sample"
+version = "0.1.0"
+dependencies = [
+ "actix-http",
+ "actix-rt",
+ "actix-web",
+ "env_logger",
+ "juniper",
+ "lazy_static",
+ "serde",
+ "serde_derive",
+ "serde_json",
+]
+
+[[package]]
 name = "derive_more"
 version = "0.99.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1238,21 +1253,6 @@ dependencies = [
  "itoa",
  "serde",
  "url",
-]
-
-[[package]]
-name = "server"
-version = "0.1.0"
-dependencies = [
- "actix-http",
- "actix-rt",
- "actix-web",
- "env_logger",
- "juniper",
- "lazy_static",
- "serde",
- "serde_derive",
- "serde_json",
 ]
 
 [[package]]

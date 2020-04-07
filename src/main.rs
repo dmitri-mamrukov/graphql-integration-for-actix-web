@@ -14,19 +14,20 @@ async fn main() -> io::Result<()> {
 
     let schema = Arc::new(create_schema());
 
-    let host = "localhost";
-    let port = "1978";
+    let host = "0.0.0.0";
+    let port = 8000;
 
-    println!("{}", format!("Starting on {}:{}...", host, port));
-
-    HttpServer::new(move || {
+    let server = HttpServer::new(move || {
         App::new()
             .data(schema.clone())
             .wrap(middleware::Logger::default())
             .service(web::resource("/graphql").route(web::post().to(handle_graphql)))
             .service(web::resource("/graphiql").route(web::get().to(handle_graphiql)))
     })
-    .bind(format!("{}:{}", host, port))?
-    .run()
-    .await
+    .bind((host, port))?
+    .run();
+
+    eprintln!("{}", format!("Listening on {}:{}...", host, port));
+
+    server.await
 }

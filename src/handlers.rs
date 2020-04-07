@@ -5,7 +5,9 @@ use juniper::http::GraphQLRequest;
 use std::sync::Arc;
 
 pub async fn handle_graphiql() -> HttpResponse {
-    let html = graphiql_source("http://localhost:1978/graphql");
+    eprintln!("Received graphiql request");
+
+    let html = graphiql_source("http://localhost:8000/graphql");
 
     HttpResponse::Ok()
         .content_type("text/html; charset=utf-8")
@@ -16,6 +18,8 @@ pub async fn handle_graphql(
     schema: web::Data<Arc<Schema>>,
     data: web::Json<GraphQLRequest>,
 ) -> Result<HttpResponse, Error> {
+    eprintln!("Received graphql request");
+
     let result = web::block(move || {
         let resp = data.execute(&schema, &());
 

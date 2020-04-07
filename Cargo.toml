@@ -1,5 +1,5 @@
 [package]
-name = "server"
+name = "crud_server_sample"
 version = "0.1.0"
 authors = ["Dmitri Mamrukov <dmitri.mamrukov@gmail.com>"]
 edition = "2018"
